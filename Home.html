@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Script</title>
+    <script>
+        function sendData() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var data = { name: name, email: email }; // Dữ liệu từ người dùng
+            var url = 'https://script.google.com/macros/s/AKfycbz-kUwL8PyPD-gMSozaGXCbTJpxqU__BIG_wKNhWYxtdKWsHWsw6OdfFE_JhXUZDIIq6A/exec'; // Thay thế bằng URL triển khai của bạn
+
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(function(response) {
+                console.log('Data sent successfully');
+            }).catch(function(error) {
+                console.error('Error sending data:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h2>Submit Your Information</h2>
+    <form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <!-- Thêm một số phần của tính năng và link ảnh -->
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+        <label for="avatar">Avatar:</label><br>
+        <input type="file" id="avatar" name="avatar" accept="image/*"><br><br>
+        <!-- Kết thúc phần thêm -->
+        <button type="button" onclick="sendData()">Submit</button>
+    </form>
+</body>
+</html>
